@@ -1,18 +1,18 @@
-use std::fmt;
+use std::fmt; ///formatter
 use std::fmt::{Display, Formatter, Error};
 
-enum VertDir{
+enum VertDir{ ///for up and down moving
     Up, 
     Down
 }
 
-enum HorizDir{
+enum HorizDir{ ///left and right movement
     Left, 
     Right
 }
 
 
-struct Ball{
+struct Ball{ /// holding and defining value of enum
     x : i32, 
     y : i32,
     vert_dir : VertDir, 
@@ -20,13 +20,13 @@ struct Ball{
 }
 
 
-struct Frame{
+struct Frame{ ///dimensions of the box
     width : i32, 
     height : i32, 
 }
 
 
-struct Game{
+struct Game{ ///game holds the frame and the ball needed to make the ball move in terminal
     frame : Frame, 
     ball : Ball
 }
@@ -91,7 +91,7 @@ impl Ball{
 }
 
 
-impl Display for Game{
+impl Display for Game{ ///dimensions and how the ball moves in display
     fn fmt(&self, fmt:&mut Formatter)->Result<(), Error>{
         write!(fmt, "x");
         for _ in 0..64{ write!(fmt, "-"); }
@@ -113,11 +113,11 @@ impl Display for Game{
 
 fn main() {
      let mut new_game  = Game::new();
-     let sleep_time = std::time::Duration::from_millis(33);
+     let sleep_time = std::time::Duration::from_millis(33); ///represent a span of time, typically used for system timeouts
      loop {
             println!("{}", new_game); 
             new_game.step();
-            std::thread::sleep(sleep_time);  
+            std::thread::sleep(sleep_time); ///resprents a sleep time 
             println!("{} {} ", new_game.ball.x, new_game.ball.y);
      }
 
